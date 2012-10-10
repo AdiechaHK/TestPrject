@@ -5,8 +5,8 @@
     <script type="text/javascript" src="jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="../widgets.css">
-  </head>
+<!--     <link rel="stylesheet" type="text/css" href="../widgets.css">
+ -->  </head>
   <body>
 	<h1>Welcome friends</h1>
 	<hr>

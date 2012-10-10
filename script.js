@@ -31,16 +31,34 @@ $(document).ready(function(){
 	$('#stageChangeBtn').click(function(){
 		$('<div/>', {
 			id: "hideWrapper",
-			style:"width: 100%; height: 100%; opacity: 0.5; position: absolute; background-color: black; top:0px; left: 0px;"
+			style:"display: none;"
+		}).appendTo($('body'));
+		$('<div/>', {
+			id: 'alertBox',
+			style: "display: none; top: 150px; left: 200px; "
 		}).append($('<div/>', {
-			style: "height: 100px; width:100px;"
+			id: 'alertContents'
 		}).append($('<a/>', {
 			href: '#',
 			id: 'closeWrapper',
-			html: "CLick to close"
-		}))).appendTo($('body'));
+			// html: 'if test fails',
+			style: ""
+		}).append($('<i/>', {'class': 'closeBtn'})))).appendTo($('body'));
+		var topPos = parseInt($('#hideWrapper').css('height')) - parseInt($('#alertBox').css('height'));
+		var leftPos = parseInt($('#hideWrapper').css('width')) - parseInt($('#alertBox').css('width'));
+		$('#alertContents').append($('<p/>', { html : "height :: "+topPos+":"+leftPos }));
+		$('#alertBox').css('top', topPos/2);
+		$('#alertBox').css('left', leftPos/2);
+		$('#hideWrapper').fadeIn('fast', function(){
+			$('#alertBox').slideDown('slow');
+		});
 		$('#closeWrapper').click(function(){
-			$('#hideWrapper').remove();
+			$('#alertBox').slideUp('slow', function(){
+				$('#alertBox').remove();
+				$('#hideWrapper').fadeOut('fast', function(){
+					$('#hideWrapper').remove();
+				});
+			});
 		})
 	});
 
@@ -88,7 +106,7 @@ $(document).ready(function(){
 			$('#result').html("You win in "+clickCounter+" Clicks");
 			$('#result').css('color','red');
 			$('input').each(function(){
-				$(this).attr('disable', true);
+				$(this).attr('disabled', 'disabled');
 			});
 		}
 	});
